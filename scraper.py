@@ -6,6 +6,9 @@ if len(sys.argv) < 2:
     print("Usage: python scraper.py URL")
     sys.exit()
 url_to_fix = sys.argv[1]
+if not url_to_fix.startswith("http://") and not url_to_fix.startswith("https://"):
+    url_to_fix = "https://" + url_to_fix
+
 
 my_headers = {"User-Agent": "Mozilla/5.0"}
 page = requests.get(url_to_fix, headers=my_headers)
@@ -27,3 +30,4 @@ for link in data.find_all('a'):
     if address:
 
         print(address)
+
